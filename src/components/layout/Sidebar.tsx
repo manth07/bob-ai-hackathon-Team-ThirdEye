@@ -1,5 +1,6 @@
 import React from 'react'
 import KpiBar from './KpiBar'
+import AssetList from '../list/AssetList'
 
 const Sidebar: React.FC = () => {
   return (
@@ -9,10 +10,7 @@ const Sidebar: React.FC = () => {
         <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-[#8B95A8]">
           Asset Risk Ranking
         </p>
-        {/* Asset list placeholder — populated in Phase 4 */}
-        <div className="flex items-center justify-center py-8 text-sm text-[#8B95A8]">
-          Loading assets…
-        </div>
+        <AssetList />
       </div>
     </aside>
   )
