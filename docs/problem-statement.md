@@ -1,21 +1,33 @@
 # Problem Statement
 
-## Background
+## U1 — Power Outage Prediction & Grid Equipment Failure Advisor
 
-[Describe the broader context. What domain or industry does this problem belong to? What situation creates the problem?]
+### The Problem
 
-## The Problem
+Utility grid operators currently rely on **fixed-calendar maintenance schedules** rather than real-time equipment condition data. This creates a critical blind spot:
 
-[State the problem clearly and specifically. Avoid vague statements like "things are slow" — instead say "Operations teams spend an average of 45 minutes per incident diagnosing pipeline failures because logs are scattered across 6 different tools."]
+1. **Sensor data is ignored.** Modern transformers, substations, and feeders generate continuous telemetry — temperature, load levels, vibration, oil quality — but this data is rarely analysed predictively. Maintenance happens on a schedule, not when the equipment actually needs it.
 
-## Who is Affected
+2. **Weather is not combined with sensor data.** A transformer running at 85% load on a calm day is very different from the same transformer during a 90 km/h windstorm. Utilities don't combine these signals in real time.
 
-[Describe the specific user or persona experiencing this problem. Be concrete — not "developers" but "backend engineers managing CI/CD pipelines in enterprises with 50+ microservices."]
+3. **Historical incidents are not weighted.** An asset that had a major failure six months ago is statistically more likely to fail again, but this isn't factored into today's maintenance prioritisation.
 
-## Why It Matters
+4. **The cost of failure is enormous.** Unexpected transformer and substation failures cause blackouts that cost utilities **$1 million or more per hour** in outage costs, customer compensation, and emergency repair.
 
-[What is the cost of this problem? Lost time? Revenue? Safety risk? Frustration? Quantify if possible.]
+### Who Has This Problem
 
-## Why Existing Solutions Fall Short
+- **Grid operations managers** who schedule maintenance crews but have no early warning system.
+- **Maintenance planners** who triage hundreds of assets across large geographic areas with no objective risk ranking.
+- **Utility executives** who face regulatory scrutiny and financial liability when preventable outages occur.
 
-[Briefly explain what people currently do and why it doesn't fully solve the problem. This sets up why your solution is needed.]
+### The Opportunity
+
+If sensor health, live weather risk, and historical incident patterns could be combined into a single, interpretable score — and surfaced in a dashboard operators already know how to use — maintenance could shift from calendar-based to **condition-based and predictive**.
+
+Early intervention on a high-risk transformer costs $5,000–$50,000. Emergency replacement after failure costs $500,000–$2,000,000+. The ROI on prediction is enormous.
+
+### Why This Is Hard
+
+- Sensor data, weather data, and incident history come from separate systems in different formats.
+- Existing SCADA systems show raw values but don't synthesise a single actionable risk signal.
+- Operators are already overloaded; any solution must be immediately interpretable, not a black box.

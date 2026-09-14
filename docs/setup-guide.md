@@ -1,79 +1,74 @@
 # Setup Guide
 
-> **This file is read by the automated evaluation pipeline. Be precise and complete.**
-
 ## Prerequisites
 
-Before you begin, ensure you have the following installed:
-
-- [ ] [e.g., Python 3.11+]
-- [ ] [e.g., Node.js 18+]
-- [ ] [e.g., Docker Desktop]
-- [ ] [e.g., An IBM Cloud account with watsonx.ai access]
-
-## Environment Variables
-
-Copy `.env.example` to `.env` and fill in the values:
-
-```bash
-cp .env.example .env
-```
-
-| Variable | Description | Required |
-|---|---|---|
-| `WATSONX_API_KEY` | Your IBM watsonx.ai API key | Yes |
-| `WATSONX_PROJECT_ID` | Your watsonx.ai project ID | Yes |
-| `DATABASE_URL` | PostgreSQL connection string | Yes |
-| `SLACK_WEBHOOK_URL` | Slack webhook for alerts | No |
+- **Node.js** 18 or later — check with `node --version`
+- **npm** 9 or later — check with `npm --version`
+- A modern browser (Chrome, Firefox, Edge, Safari)
+- An internet connection (for live weather data from Open-Meteo — the app works offline with estimated data if unavailable)
 
 ## Installation
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/[your-org]/[your-repo].git
-cd [your-repo]
+git clone https://github.com/[your-github-org]/bob-ai-hackathon-Team-ThirdEye.git
+cd bob-ai-hackathon-Team-ThirdEye
 
-# 2. Install backend dependencies
-[your command — e.g.: pip install -r requirements.txt]
+# 2. Install dependencies (takes ~30 seconds)
+npm install
 
-# 3. Install frontend dependencies (if applicable)
-[your command — e.g.: cd frontend && npm install]
-
-# 4. Set up the database (if applicable)
-[your command — e.g.: python manage.py migrate]
+# 3. Start the development server
+npm run dev
 ```
 
-## Running the Application
+Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+## No Configuration Required
+
+GridSentry uses no paid APIs and requires no environment variables. The `.env.example` file is provided for reference but does not need to be copied or filled in.
+
+The app will:
+1. Immediately render all 35 grid assets with estimated weather data (from seeded mock)
+2. Fetch live weather in the background from [Open-Meteo](https://open-meteo.com/) (free, no key)
+3. Update risk scores with live data when the weather fetch completes (~2-5 seconds)
+
+If Open-Meteo is unreachable (e.g., offline), the app continues working with estimated weather and shows a **⚠ Estimated** badge. No crash, no blank screen.
+
+## Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start the Vite dev server at http://localhost:5173 |
+| `npm run build` | Build for production (outputs to `dist/`) |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint` | Run ESLint (must pass with zero errors) |
+| `npm run test` | Run Vitest unit tests |
+
+## Verifying the Build
 
 ```bash
-# Start the backend
-[your command — e.g.: uvicorn app.main:app --reload]
+# Type-check and build
+npm run build
 
-# Start the frontend (in a separate terminal, if applicable)
-[your command — e.g.: cd frontend && npm run dev]
-```
+# Should output: ✓ built in Xs (no TypeScript errors)
 
-The application will be available at: `http://localhost:[PORT]`
+# Run tests
+npm run test
 
-## Running Tests
-
-```bash
-[your test command — e.g.: pytest tests/ -v]
-```
-
-## Quick Demo (Optional)
-
-If you have a demo script or sample data to showcase the project quickly:
-
-```bash
-[e.g.: python demo/seed_demo_data.py]
-[e.g.: open http://localhost:8000/demo]
+# Should output: 23 passed (0 failed)
 ```
 
 ## Troubleshooting
 
-| Issue | Solution |
-|---|---|
-| [e.g., `ModuleNotFoundError`] | [e.g., Run `pip install -r requirements.txt` again] |
-| [e.g., Database connection refused] | [e.g., Ensure PostgreSQL is running: `docker compose up db`] |
-| [e.g., watsonx.ai 401 error] | [e.g., Check `WATSONX_API_KEY` in your `.env` file] |
+**`npm install` fails:**
+- Make sure you're using Node.js 18+. Run `node --version`.
+- Delete `node_modules/` and `package-lock.json`, then retry.
+
+**Map tiles don't load:**
+- This requires an internet connection to CARTO tile servers. On an offline network, the map will show a dark background with asset markers but no tiles.
+
+**Weather shows "⚠ Estimated":**
+- This is expected if Open-Meteo is unreachable or rate-limited. All features work normally with estimated weather.
+
+**Port 5173 already in use:**
+- Vite will automatically try port 5174, 5175, etc. Check the terminal output for the actual URL.

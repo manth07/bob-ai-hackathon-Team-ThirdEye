@@ -1,121 +1,104 @@
-# 🚀 [Your Project Title Here]
+# GridSentry — Power Outage Prediction & Grid Equipment Failure Advisor
 
-> ⚠️ **Replace everything in `[ ]` brackets with your actual content before submission.**
-
----
-
-## 👥 Team
-
-| Field | Value |
-|---|---|
-| **Team Name** | [Your Team Name] |
-| **Track** | [AI / DevOps / Sustainability / Open] |
-| **Team Lead** | [Name] — [email@ibm.com] |
-| **Members** | [Name 1], [Name 2], [Name 3] |
+**Team ThirdEye** · IBM Bob AI Innovation Hackathon · Problem Statement U1 (Utilities Track)
 
 ---
 
-## 🎯 Problem Statement
+## What Is GridSentry?
 
-> In 2–3 sentences: What problem does your project solve? Who experiences this problem?
+GridSentry is a browser-based advisor that predicts power outages before they happen. It monitors a fleet of 35 simulated grid assets — transformers, substations, and feeders — combining live weather forecasts, synthetic sensor telemetry, and historical incident data into a single actionable **Risk Score (0–100)** per asset.
 
-[Describe the real-world problem your project addresses. Be specific about who the user is and what pain point they face.]
-
----
-
-## 💡 Solution
-
-> In 2–3 sentences: What did you build? How does it solve the problem above?
-
-[Describe your solution clearly. Explain the core mechanism — what makes it work.]
+Operators see which assets are about to fail, why, and what to do about it — all in a dark-theme control-room interface with no login, no backend, and no paid APIs.
 
 ---
 
-## ✨ Key Features
-
-- **Feature 1:** [Brief description — e.g., "Real-time anomaly detection using watsonx.ai"]
-- **Feature 2:** [Brief description]
-- **Feature 3:** [Brief description]
-- **Feature 4:** [Optional]
-- **Feature 5:** [Optional]
-
----
-
-## 🛠️ Tech Stack
-
-| Category | Technologies |
-|---|---|
-| **Languages** | [e.g., Python, TypeScript] |
-| **Frameworks** | [e.g., FastAPI, React] |
-| **IBM Technologies** | [e.g., watsonx.ai, IBM Bob, IBM Cloud] |
-| **Databases** | [e.g., PostgreSQL, Redis] |
-| **Other** | [e.g., Docker, GitHub Actions] |
-
----
-
-## 📁 Repository Structure
-
-```
-├── src/                  # All source code
-├── docs/                 # Written documentation
-│   ├── problem-statement.md
-│   ├── solution-overview.md
-│   ├── architecture.md
-│   └── setup-guide.md
-├── demo/                 # Demo artifacts
-│   ├── screenshots/      # App screenshots
-│   └── demo-video-link.txt  # Link to demo video
-├── presentation/         # Slide deck
-└── submission.yaml       # Structured submission metadata
-```
-
----
-
-## ⚡ How to Run
-
-> **Copy these exact steps from your [`docs/setup-guide.md`](docs/setup-guide.md)**
+## Quick Start
 
 ```bash
-# 1. Clone the repo
-git clone https://github.com/[your-repo].git
-cd [your-repo]
+npm install
+npm run dev
+```
 
-# 2. Install dependencies
-[your install command here]
+Open [http://localhost:5173](http://localhost:5173). No environment variables, no API keys, no backend setup required.
 
-# 3. Configure environment
-cp .env.example .env
-# Edit .env with your values
+---
 
-# 4. Run the project
-[your run command here]
+## Features
+
+| # | Feature | Description |
+|---|---------|-------------|
+| F1 | Synthetic fleet | 35 grid assets (transformer/substation/feeder) across Gujarat, India with deterministic seeded data |
+| F2 | Sensor simulation | 24-point daily sensor history per asset: temperature, load, vibration, oil quality |
+| F3 | Live weather | Real forecast per asset via Open-Meteo (free, keyless) with estimated-weather fallback |
+| F4 | Incident history | Seeded past-incident log per asset (cause, severity, cost, duration) |
+| F5 | Risk scoring | Weighted composite score: 45% sensor + 30% weather + 25% incidents |
+| F6 | Risk map | Interactive CARTO dark-matter map with colour-coded risk markers |
+| F7 | Ranked list | Sortable asset list with risk badges and score bars |
+| F8 | Asset detail | Sensor trend charts, weather panel, plain-English risk explanation |
+| F9 | Maintenance plan | Prioritised action table: immediate → urgent → scheduled → routine |
+| F10 | KPI bar | Fleet overview: total assets, critical/high counts, top priority asset |
+
+---
+
+## Tech Stack
+
+- **React 18 + Vite** — fast dev loop, zero-config
+- **TypeScript** (strict) — type safety throughout
+- **Tailwind CSS** — dark control-room theme
+- **Recharts** — sensor trend charts
+- **React-Leaflet + CARTO** — interactive dark map
+- **Open-Meteo API** — free, keyless weather
+- **Zustand** — minimal state management
+- **Vitest** — unit tests on the scoring engine
+
+---
+
+## Architecture
+
+All logic runs **client-side in the browser**. No backend, no database, no server.
+
+```
+ASSETS (seeded)  +  SENSORS (seeded)  +  INCIDENTS (seeded)
+                                +
+                     Open-Meteo Weather API
+                          ↓
+                   Risk Scoring Engine
+                  (sensor × 0.45 + weather × 0.30 + incidents × 0.25)
+                          ↓
+                   Ranked Asset List  →  Map  →  Detail  →  Plan
+```
+
+See [`docs/architecture.md`](docs/architecture.md) for full details.
+
+---
+
+## Project Structure
+
+```
+src/
+├── data/          Seeded asset fleet, sensor generator, incident history
+├── services/      Open-Meteo weather service with fallback
+├── engine/        Risk scoring, ranking, explanation, maintenance plan
+├── store/         Zustand store wiring data to UI
+├── components/    Map, list, detail, plan, layout components
+└── types/         Domain types (Asset, SensorReading, RiskScore, …)
 ```
 
 ---
 
-## 🖥️ Demo
+## Scripts
 
-| Artifact | Link |
-|---|---|
-| 📹 Demo Video | [See demo/demo-video-link.txt](demo/demo-video-link.txt) |
-| 🌐 Live Demo | [See demo/live-demo-url.txt](demo/live-demo-url.txt) |
-| 🖼️ Screenshots | [See demo/screenshots/](demo/screenshots/) |
-| 📊 Presentation | [See presentation/slides.pdf](presentation/) |
-
----
-
-## ⚠️ Known Limitations
-
-> Be honest — judges appreciate transparency over overclaiming.
-
-- [Limitation 1: e.g., "Authentication is mocked — not production-ready"]
-- [Limitation 2: e.g., "Only tested on Chrome"]
-- [Limitation 3: e.g., "Feature X is scaffolded but not fully implemented"]
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start dev server |
+| `npm run build` | Production build |
+| `npm run lint` | ESLint (zero errors required) |
+| `npm run test` | Vitest unit tests |
 
 ---
 
-## 🏅 What We're Most Proud Of
+## Team
 
-[Tell the judges what part of your submission is strongest and worth paying close attention to.]
+**Team ThirdEye** — IBM Bob AI Innovation Hackathon, September 2025
 
----
+Built with [IBM Bob AI](https://www.ibm.com/products/watsonx-code-assistant) (Bob AI Innovation Hackathon submission).
