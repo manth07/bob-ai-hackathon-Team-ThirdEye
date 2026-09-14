@@ -12,15 +12,17 @@ team:
   name: "Team ThirdEye"                # REQUIRED
   track: "AI"                          # REQUIRED — one of: AI | DevOps | Sustainability | Open
   lead:
-    name: "Team ThirdEye Lead"         # REQUIRED
-    email: "team.thirdeye@example.com" # REQUIRED
+    name: "Manthan Vasoya"             # REQUIRED
+    email: "25ce136@charusat.edu.in"   # REQUIRED
   members:
-    - name: "Team ThirdEye Member 1"
-      email: "member1@example.com"
-    - name: "Team ThirdEye Member 2"
-      email: "member2@example.com"
-    - name: "Team ThirdEye Member 3"
-      email: "member3@example.com"
+    - name: "Manthan Vasoya"
+      email: "25ce136@charusat.edu.in"
+    - name: "Pratik Kotecha"
+      email: ""
+    - name: "Ayush Padaliya"
+      email: ""
+    - name: "Vagisha Mankad"
+      email: ""
 
 submission:
   title: "GridSentry"                  # REQUIRED
@@ -63,6 +65,7 @@ submission:
     Sensor data is synthetically generated (not real SCADA feeds). The weather integration
     uses the free Open-Meteo API which may be rate-limited; a mock fallback is provided.
     The app is not yet deployed to a public URL — run locally with npm install && npm run dev.
+    Demo video link and live URL are placeholders pending recording and optional deployment.
 
 # =============================================================================
 # ARTIFACT LOCATIONS

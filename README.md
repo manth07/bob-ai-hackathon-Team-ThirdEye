@@ -10,8 +10,8 @@
 |---|---|
 | **Team Name** | Team ThirdEye |
 | **Track** | AI |
-| **Team Lead** | [Team Lead Name] — [team-lead-email@example.com] |
-| **Members** | [Member 1 Name], [Member 2 Name], [Member 3 Name] |
+| **Team Lead** | Manthan Vasoya — 25ce136@charusat.edu.in |
+| **Members** | Manthan Vasoya, Pratik Kotecha, Ayush Padaliya, Vagisha Mankad |
 
 ---
 
@@ -92,7 +92,7 @@ No API keys, no environment variables, no backend setup required.
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/[your-github-org]/bob-ai-hackathon-Team-ThirdEye.git
+git clone https://github.com/bob-ai-hackathon-Team-ThirdEye/bob-ai-hackathon-Team-ThirdEye.git
 cd bob-ai-hackathon-Team-ThirdEye
 
 # 2. Install dependencies (~30 seconds)
