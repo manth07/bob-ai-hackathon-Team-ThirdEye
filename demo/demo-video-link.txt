@@ -1,3 +1,1 @@
-[DEMO VIDEO URL]
-# TODO: Replace [DEMO VIDEO URL] with the actual 3-5 minute demo video link (YouTube, Loom, or Box - unlisted is fine)
-# The video should show: app loading → KPI bar → map → selecting an asset → detail + charts → maintenance plan
+DEMO VIDEO URL - https://drive.google.com/file/d/1knL1xNJkRyLMx7BL927wLf91VQ2VV2mJ/view?usp=sharing
