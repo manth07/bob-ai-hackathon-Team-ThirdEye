@@ -92,7 +92,7 @@ No API keys, no environment variables, no backend setup required.
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/manth07/bob-ai-hackathon-Team-ThirdEye/bob-ai-hackathon-Team-ThirdEye.git
+git clone https://github.com/manth07/bob-ai-hackathon-Team-ThirdEye.git
 cd bob-ai-hackathon-Team-ThirdEye
 
 # 2. Install dependencies (~30 seconds)
