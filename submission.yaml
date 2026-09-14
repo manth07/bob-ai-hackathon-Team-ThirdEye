@@ -51,7 +51,7 @@ submission:
     frameworks: ["React 18", "Vite", "Tailwind CSS", "Recharts", "React-Leaflet", "Zustand"]
     ibm_technologies: ["IBM Bob AI"]
     databases: []
-    other: ["Open-Meteo API (free, keyless)", "Vitest", "ESLint", "OpenStreetMap", "CARTO tiles"]
+    other: ["Open-Meteo API (free, keyless)", "Vitest", "ESLint", "OpenStreetMap tiles (keyless)"]
 
   what_we_are_most_proud_of: >
     The deterministic risk scoring engine — a weighted composite formula that combines live

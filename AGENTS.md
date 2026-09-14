@@ -137,7 +137,7 @@ bob-ai-hackathon-Team-ThirdEye/
 | Language | TypeScript | Type safety catches bugs before they cost a coin to fix |
 | Styling | Tailwind CSS | No separate design files, fast to iterate |
 | Charts | Recharts | Simple API, good defaults |
-| Map | React-Leaflet + OpenStreetMap / CARTO tiles | Free, no API key |
+| Map | React-Leaflet + OpenStreetMap tiles + CSS invert filter | Free, no API key, no registration |
 | Weather | Open-Meteo API | Free, no API key, no billing risk |
 | State | Zustand | Minimal boilerplate vs Redux |
 | Testing | Vitest (unit tests on the scoring engine, used by the test-debug loop) | Cheap, fast, automatable confidence |
@@ -182,7 +182,8 @@ A dark, "grid-operations control room" aesthetic. High contrast, data-dense but 
 - Spacing: Tailwind's default 4px-based scale (4/8/12/16/24/32) only.
 
 ### Map & Charts
-- Dark basemap (CARTO "dark matter" tiles). Markers: circle, colour equals risk tier, size equals grid-impact severity.
+- Dark basemap: OpenStreetMap tile server (`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`) with a CSS filter (`invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9)`) applied to `.leaflet-tile-pane` only. This produces a dark "control room" look with no API key, no CARTO dependency, and no watermarks. Markers live in `.leaflet-overlay-pane` (a sibling pane, not a child of `.leaflet-tile-pane`) so risk-tier colours are never inverted.
+- Markers: circle, colour equals risk tier, size equals grid-impact severity.
 - Recharts styled to the same dark theme: subtle gridlines, tooltips using the Surface background with a Border-token outline.
 
 ### Motion & Accessibility

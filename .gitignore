@@ -94,3 +94,6 @@ logs/
 .terraform/
 *.tfstate
 *.tfstate.backup
+
+# -- TypeScript incremental build cache --
+*.tsbuildinfo
