@@ -40,12 +40,15 @@ Human actions before submission:
 - Zustand set() uses functional form `set((s) => ...)` for selectedAssetId to read current state.
 - App uses tab UI (Asset Detail / Maintenance Plan) for the bottom panel rather than a split view.
 - Chunk size warning from Vite (713kB) is a non-blocking advisory — not an error.
+- Map tiles: switched from CARTO (now requires API key) to OSM (keyless) + CSS `invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9)` on `.leaflet-tile-pane` only. Markers in `.leaflet-overlay-pane` are unaffected, preserving risk-tier colours.
+- Build artifacts: `*.tsbuildinfo` added to .gitignore, both files removed from git index with `git rm --cached`.
+- README: rewritten to match the official hackathon template's section order (Team, Problem Statement, Solution, Key Features, Tech Stack, Repository Structure, How to Run, Demo, Known Limitations, What We're Most Proud Of). Real unknowns left as bracketed placeholders.
 
 ## Known Issues / Blockers
 - demo/screenshots/ contains only a README placeholder — real screenshots must be taken manually.
 - demo/demo-video-link.txt has a placeholder URL — real video must be recorded and linked.
 - presentation/ contains only SLIDES-OUTLINE.md — actual slide deck must be created.
-- submission.yaml team member names/emails are placeholders — must be updated with real info.
+- submission.yaml and README.md Team table still have bracketed placeholders for real team member names/emails and live demo URL — must be filled before submission.
 - The Vite chunk size advisory (713kB unminified) could be resolved with dynamic imports, but is not a build error and doesn't affect functionality.
 
 ## Test & Debug Loop Log
@@ -61,6 +64,9 @@ Human actions before submission:
 | 4 | 1 | build+lint+test | PASS first try | - | ~0.5 |
 | 5 | 1 | build+lint+test | PASS first try (chunk warning, not error) | - | ~0.5 |
 | 6 | 1 | build+lint+test | PASS first try | - | ~0.5 |
+| Fix 1 | 1 | build+lint+test | PASS — OSM tiles, CSS filter, AGENTS.md updated | - | ~0.5 |
+| Fix 2 | 1 | build+lint+test | PASS — tsbuildinfo untracked, regenerates ignored | - | ~0.5 |
+| Fix 3 | 1 | build+lint+test | PASS — README structure matches official template | - | ~0.5 |
 
 ## Session Log
 
@@ -120,3 +126,40 @@ Partially run — build/lint/test loop complete. Visual walkthrough requires hum
 | 6 | 9 | ~1 | ~8 | PASS first try |
 | Debug Reserve | 4 | 0 | 4 | Untouched |
 | Total | 50 | ~8 | ~42 | Well under budget |
+
+### [Post-Phase 6 Fixes] - Map tiles, git artifacts, README - 2025-09-14
+
+**What changed:**
+
+**Fix 1 — Keyless map tiles:**
+- `src/components/map/RiskMap.tsx` — switched `TileLayer` from `basemaps.cartocdn.com/dark_all` (now requires API key) to `tile.openstreetmap.org` (keyless, no registration). Removed `subdomains="abcd"`, updated attribution to OSM only, set `maxZoom={19}`.
+- `src/styles/theme.css` — updated `.leaflet-tile-pane` filter from `brightness(0.9)` to `invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9)`. This produces the dark control-room look using OSM tiles without any paid provider. The filter targets only `.leaflet-tile-pane`; markers live in `.leaflet-overlay-pane` and are unaffected — risk-tier colours (green/yellow/orange/red) remain correct.
+- `AGENTS.md` — updated Tech Stack table (Map row) and "Map & Charts" design section to describe the OSM + CSS-filter approach. CARTO reference fully removed.
+- `submission.yaml` — removed "CARTO tiles" from `other` tech stack list.
+
+**Fix 2 — Remove build artifacts from git:**
+- `.gitignore` — appended `*.tsbuildinfo` in the Node.js section.
+- Ran `git rm --cached tsconfig.app.tsbuildinfo tsconfig.node.tsbuildinfo` — both files removed from git index, still present on disk. Confirmed `git status` no longer tracks them. Rebuilt to confirm they regenerate and stay ignored.
+
+**Fix 3 — README matches official template:**
+- `README.md` fully rewritten with exact template section structure and order: ⚡ Title, Team (table), Problem Statement, Solution, Key Features, Tech Stack (table), Repository Structure (real tree), How to Run (real commands from setup-guide.md), Demo (table), Known Limitations, What We're Most Proud Of.
+- IBM Technologies row updated to "IBM Bob (full SDLC — planning, implementation, testing, debugging)".
+- CARTO reference removed from Key Features map bullet.
+
+**README placeholders still requiring human action before 15 September submission:**
+1. `[Team Lead Name]` and `[team-lead-email@example.com]` in the Team table
+2. `[Member 1 Name]`, `[Member 2 Name]`, `[Member 3 Name]` in the Team table
+3. `[your-github-org]` in the How to Run clone URL
+4. `demo/demo-video-link.txt` — needs real video URL
+5. `demo/live-demo-url.txt` — needs deployed URL (or can stay as localhost note)
+6. `demo/screenshots/` — needs 3+ real screenshots
+7. `presentation/` — needs actual slide deck PDF/PPTX
+8. `submission.yaml` — team lead and member names/emails still have example.com placeholders
+
+**Test & Debug Loop:** All 3 fixes passed on attempt 1. Build clean, lint clean, 23/23 tests pass.
+
+**Bobcoins used for these fixes:** ~1.5 (of remaining ~42)
+**Debug Reserve remaining:** 4 (untouched)
+
+**Next up:** Human fills the 8 placeholders above, records video, takes screenshots, creates slides, then submits on 15 September.
+
