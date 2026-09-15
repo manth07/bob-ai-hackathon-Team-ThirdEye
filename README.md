@@ -120,7 +120,7 @@ npm run test     # Vitest — 23 unit tests on the scoring engine
 
 | Artifact | Link |
 |---|---|
-| 📹 Demo Video | [See demo/demo-video-link.txt](demo/demo-video-link.txt) |
+| 📹 Demo Video | https://drive.google.com/file/d/1knL1xNJkRyLMx7BL927wLf91VQ2VV2mJ/view?usp=sharing |
 | 🌐 Live Demo | [See demo/live-demo-url.txt](demo/live-demo-url.txt) |
 | 🖼️ Screenshots | [See demo/screenshots/](demo/screenshots/) |
 | 📊 Presentation | [See presentation/](presentation/) |
